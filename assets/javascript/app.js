@@ -40,17 +40,18 @@ var triviaIndex = 0;
 
 var correct = 0;
 var incorrect = 0;
-var unanswered = 0;
+var unanswered = 5;
 
 
 function countdown () {
-  var timeLeft = 120;
+  var timeLeft = 30;
   var timer = setInterval(function() {
     timeLeft--;
     $("#timer").html(timeLeft);
     if (timeLeft <= 0) {
       clearInterval(timer);
       $("#triviaPage").hide();
+      $("#unanswered").html(unanswered);
       $("#resultsPage").show();
     }
   }, 1000);
@@ -93,6 +94,8 @@ $("#start-button").click(startGame);
 
     // When the user presses a key, it will run the following function...
     document.onkeyup = function(event) {
+
+      unanswered--;   
 
       // If there are no more questions, stop the function.
       if (triviaIndex === trivia.length) {
